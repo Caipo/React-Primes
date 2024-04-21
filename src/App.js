@@ -1,7 +1,7 @@
 import './App.css';
 import {getPrime} from './Prime.js';
 import React, { useEffect, useState } from 'react'; 
-import {Audio} from 'react-loader-spinner';
+import {InfinitySpin} from 'react-loader-spinner';
 
 function App() {
   return(
@@ -19,27 +19,23 @@ function GenerateButton(func) {
 
 
 function NumberLable() {
-    const [number, setNumber] = useState(0);
+    const [number, setNumber] = useState('');
     const [bits, setBits] = useState(512);
     const [isLoading, setIsLoading] = useState(false);
-   //useEffect( () =>{setValue(isLoading ? 'loading' : number);}, [isLoading, number]);
-    useEffect( () =>{console.log(isLoading)}, [isLoading, number]);
-    
+
+    // Used to get the prime number asd set loading
     const getNumber =  async () => {
           setIsLoading(true);
           const result = await getPrime(bits);
           setIsLoading(false);
           setNumber(result);
-        //  setIsLoading(false);
     }
 
 return(     
         <div className='center-div'>
             <h1 className='title'> Prime Number Generator </h1>
             <div className='number-div' >
-
-            {isLoading && (<Loading />)}
-
+            {isLoading ? (<Loading />) : number}
             </div>
 
             {BitsButtons(setBits)}
@@ -50,15 +46,14 @@ return(
 
 function Loading(){
     return(
-    <Audio
-      height="80"
-      width="80"
-      radius="9"
-      color="green"
-      ariaLabel="loading"
-      wrapperStyle
-      wrapperClass
-        />
+    <div className='loading-wrapper'>
+        <InfinitySpin
+          visible={true}
+          width="200"
+          color="#DFDEDF"
+          ariaLabel="infinity-spin-loading"
+          />
+        </div>
         );
 }
 

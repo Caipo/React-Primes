@@ -1,16 +1,19 @@
 html, body, #app, #app> div {
   height: 100%;
-  background-color: aliceblue;
+  background-color: #223449;
   display: flex;
   justify-content: center;
 }
 
 
+
 .number-div {
     overflow-wrap: break-word;
     border: 0.05em solid black;
-    background-color: white;
+    background-color: #3B4A58;
+    color : lightgrey;
     border-radius: 5px;
+    border-color: lightgrey;
     overflow-y: visible;
     height: auto;
     min-height: 100px;
@@ -18,15 +21,20 @@ html, body, #app, #app> div {
     width: 700px; 
 }
 
+.bit-selector{
+    color : lightgrey;
+}
+
 .title {
     display: flex;
-    color: grey;
+    color: lightgrey;
     position:relative;
     justify-content: center;
 }
 
 .center-div{
   position: relative;
+  justify-content: center;
   margin: auto;
   top: -16.666%; 
 }
@@ -39,7 +47,11 @@ html, body, #app, #app> div {
     position:relative;
 }
 
-
+.loading-wrapper{
+  position: relative;
+  justify-content: center;
+  display: flex;
+}
 
 .gen-button {
   display: flex;
