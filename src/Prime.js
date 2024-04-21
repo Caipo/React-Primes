@@ -1,14 +1,17 @@
 /* global BigInt */
 
-export function getPrime(bits){
-    let test_number = getRandom(bits);
-    // Loop that breaks if rabin says a number is prime
-    while(! millarRabin(test_number)){
-        test_number = getRandom(bits);
-    }
-    return (test_number.toString());
+export async function getPrime(bits){
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            let test_number = getRandom(bits);
+            // Loop that breaks if rabin says a number is prime
+            while(! millarRabin(test_number)){
+                test_number = getRandom(bits);
+            }
+            resolve(test_number.toString());
+        }, 0);
+    });
 }
-
 // with the number of bits it returns a random odd number 
 function getRandom(bits){
     let bitShift = BigInt(Math.round(Math.random() * 1));

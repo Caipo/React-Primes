@@ -1,7 +1,7 @@
 import './App.css';
 import {getPrime} from './Prime.js';
 import React, { useEffect, useState } from 'react'; 
-import {Audio } from 'react-loader-spinner';
+import {Audio} from 'react-loader-spinner';
 
 function App() {
   return(
@@ -25,9 +25,9 @@ function NumberLable() {
    //useEffect( () =>{setValue(isLoading ? 'loading' : number);}, [isLoading, number]);
     useEffect( () =>{console.log(isLoading)}, [isLoading, number]);
     
-    const getNumber =  () => {
+    const getNumber =  async () => {
           setIsLoading(true);
-          const result = getPrime(bits);
+          const result = await getPrime(bits);
           setIsLoading(false);
           setNumber(result);
         //  setIsLoading(false);
@@ -38,15 +38,17 @@ return(
             <h1 className='title'> Prime Number Generator </h1>
             <div className='number-div' >
 
-            {isLoading ? loading() : number }
+            {isLoading && (<Loading />)}
+
             </div>
+
             {BitsButtons(setBits)}
             {GenerateButton(getNumber)}
         </div>
         );
 }
 
-function loading(){
+function Loading(){
     return(
     <Audio
       height="80"
@@ -56,7 +58,8 @@ function loading(){
       ariaLabel="loading"
       wrapperStyle
       wrapperClass
-        />);
+        />
+        );
 }
 
 function BitsButtons(setBits){
