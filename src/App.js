@@ -1,6 +1,6 @@
 import './App.css';
 import {getPrime} from './Prime.js';
-import React, { useEffect, useState } from 'react'; 
+import {useState} from 'react'; 
 import {InfinitySpin} from 'react-loader-spinner';
 
 function App() {

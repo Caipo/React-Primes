@@ -1,9 +1,14 @@
 /* global BigInt */
 
 export function getPrime(bits) {
+    bits = BigInt(bits);
+    let max = 2n ** bits;
+    let min = 2n ** (bits - 1n);
+
     return new Promise((resolve) => {
         function checkPrime() {
-            let test_number = getRandom(bits);
+            let test_number = getRandom(max, min);
+
             if (millarRabin(test_number)) {
                 resolve(test_number.toString());
             } else {
@@ -17,13 +22,9 @@ export function getPrime(bits) {
 }
 
 // with the number of bits it returns a random odd number 
-function getRandom(bits){
-    bits = BigInt(bits);
-    let max = 2n ** bits;
-    let min = 2n ** (bits - 1n);
+function getRandom(max, min){
     let random = BigInt(Math.floor(Math.random() * 100000000000));
     return( (random * (max -  min) - min) / 100000000000n);
-    
 }
 
 
